@@ -20,11 +20,11 @@
 
     let iconSvg = '';
     if (type === 'success') {
-      iconSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
+      iconSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
     } else if (type === 'warning') {
-      iconSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>';
+      iconSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>';
     } else {
-      iconSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>';
+      iconSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EDEDED" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>';
     }
 
     toast.innerHTML = `
@@ -53,6 +53,45 @@
     }
   }
   window.showToast = showToast;
+
+  /* =========================================================================
+     Theme Controller (Dark Mode by Default — Next.js / Apple style)
+     ========================================================================= */
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const themeIconMoon = document.getElementById('themeIconMoon');
+  const themeIconSun = document.getElementById('themeIconSun');
+
+  function getPreferredTheme() {
+    const saved = localStorage.getItem('aftershop-theme');
+    if (saved) return saved;
+    return 'dark'; // Dark theme default
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('aftershop-theme', theme);
+    if (themeIconMoon && themeIconSun) {
+      if (theme === 'dark') {
+        themeIconMoon.style.display = 'block';
+        themeIconSun.style.display = 'none';
+      } else {
+        themeIconMoon.style.display = 'none';
+        themeIconSun.style.display = 'block';
+      }
+    }
+  }
+
+  // Initialize theme
+  applyTheme(getPreferredTheme());
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const nextTheme = current === 'dark' ? 'light' : 'dark';
+      applyTheme(nextTheme);
+      showToast(`Switched to ${nextTheme === 'dark' ? 'Dark' : 'Light'} theme`, 'info', 2500);
+    });
+  }
 
   /* =========================================================================
      2. Sticky Header & Navigation
@@ -756,8 +795,8 @@ KDS.dispatch({
      ========================================================================= */
   console.log(
     '%c AFTERSHOP %c Beyond Every Sale. by Trawbit Technologies %c',
-    'background:#0B0F19;color:#FFFFFF;font-weight:bold;padding:4px 8px;border-radius:4px 0 0 4px;',
-    'background:#2563EB;color:#FFFFFF;font-weight:bold;padding:4px 8px;border-radius:0 4px 4px 0;',
+    'background:#171717;color:#FFFFFF;font-weight:bold;padding:4px 8px;border-radius:4px 0 0 4px;',
+    'background:#262626;color:#EDEDED;font-weight:bold;padding:4px 8px;border-radius:0 4px 4px 0;',
     'color:inherit;'
   );
 
