@@ -30,7 +30,33 @@
     <div class="container header-container">
       <!-- Brand Logo -->
       <a href="#hero" class="brand-wrap" aria-label="AFTERSHOP Home">
-        <img src="assets/logo.svg" alt="AFTERSHOP Logo" width="34" height="34">
+        <svg class="brand-logo-svg" viewBox="0 0 40 40" width="34" height="34" fill="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="headerLogoBg" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#1F1F23"/>
+              <stop offset="50%" stop-color="#121214"/>
+              <stop offset="100%" stop-color="#09090B"/>
+            </linearGradient>
+            <linearGradient id="headerTopGrad" x1="20" y1="8" x2="20" y2="20" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#FFFFFF"/>
+              <stop offset="100%" stop-color="#D4D4D8"/>
+            </linearGradient>
+            <linearGradient id="headerLeftGrad" x1="9" y1="14" x2="20" y2="32" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#A1A1AA"/>
+              <stop offset="100%" stop-color="#52525B"/>
+            </linearGradient>
+            <linearGradient id="headerRightGrad" x1="31" y1="14" x2="20" y2="32" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#E4E4E7"/>
+              <stop offset="100%" stop-color="#71717A"/>
+            </linearGradient>
+          </defs>
+          <rect x="1" y="1" width="38" height="38" rx="10" fill="url(#headerLogoBg)" stroke="rgba(255, 255, 255, 0.18)" stroke-width="1.2"/>
+          <path d="M20 9L29 14.2L20 19.4L11 14.2L20 9Z" fill="url(#headerTopGrad)"/>
+          <path d="M11 14.2L20 19.4V31L11 25.8V14.2Z" fill="url(#headerLeftGrad)"/>
+          <path d="M20 19.4L29 14.2V25.8L20 31V19.4Z" fill="url(#headerRightGrad)"/>
+          <path d="M20 9V19.4M20 19.4L11 14.2M20 19.4L29 14.2M20 19.4V31" stroke="#09090B" stroke-width="1.2" stroke-linejoin="round"/>
+          <circle cx="20" cy="19.4" r="1.8" fill="#FFFFFF"/>
+        </svg>
         <div class="brand-text-group">
           <span class="brand-text">AFTERSHOP</span>
           <span class="brand-tagline">by Trawbit Technologies</span>
@@ -42,14 +68,21 @@
         <!-- Mobile Drawer Header -->
         <div class="drawer-header">
           <div class="drawer-brand">
-            <img src="assets/logo.svg" alt="AFTERSHOP Logo" width="28" height="28">
+            <svg class="brand-logo-svg" viewBox="0 0 40 40" width="28" height="28" fill="none" aria-hidden="true">
+              <rect x="1" y="1" width="38" height="38" rx="10" fill="#09090B" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1.2"/>
+              <path d="M20 9L29 14.2L20 19.4L11 14.2L20 9Z" fill="#FFFFFF"/>
+              <path d="M11 14.2L20 19.4V31L11 25.8V14.2Z" fill="#71717A"/>
+              <path d="M20 19.4L29 14.2V25.8L20 31V19.4Z" fill="#A1A1AA"/>
+              <path d="M20 9V19.4M20 19.4L11 14.2M20 19.4L29 14.2M20 19.4V31" stroke="#09090B" stroke-width="1.2"/>
+              <circle cx="20" cy="19.4" r="1.8" fill="#FFFFFF"/>
+            </svg>
             <div class="drawer-brand-text-group">
               <span class="drawer-brand-title">AFTERSHOP</span>
               <span class="drawer-brand-sub">by Trawbit</span>
             </div>
           </div>
           <button class="drawer-close-btn" id="drawerCloseBtn" type="button" aria-label="Close Navigation Menu">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"/>
               <line x1="6" y1="6" x2="18" y2="18"/>
             </svg>
@@ -61,39 +94,39 @@
           <li class="nav-item">
             <button class="nav-link" type="button" aria-expanded="false">
               Product
-              <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
             </button>
             <div class="dropdown-menu">
               <a href="#showcase-pos" class="dropdown-link">
-                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
                 <div>
                   <div class="dropdown-title">POS Billing</div>
                   <div class="dropdown-desc">Fast, barcode-ready registers & GST invoices</div>
                 </div>
               </a>
               <a href="#showcase-inventory" class="dropdown-link">
-                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
                 <div>
                   <div class="dropdown-title">Inventory</div>
                   <div class="dropdown-desc">Real-time stock, variants & reorder alerts</div>
                 </div>
               </a>
               <a href="#showcase-customers" class="dropdown-link">
-                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 <div>
                   <div class="dropdown-title">Customers</div>
                   <div class="dropdown-desc">Profiles, purchase histories & loyalty architecture</div>
                 </div>
               </a>
               <a href="#showcase-reports" class="dropdown-link">
-                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/><path d="M15 9h4v4"/></svg>
                 <div>
                   <div class="dropdown-title">Reports</div>
                   <div class="dropdown-desc">Sales performance, profit margins & audit logs</div>
                 </div>
               </a>
               <a href="#showcase-multistore" class="dropdown-link">
-                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/></svg>
                 <div>
                   <div class="dropdown-title">Multi-Store</div>
                   <div class="dropdown-desc">Central catalog, branch sync & stock transfers</div>
@@ -106,40 +139,46 @@
           <li class="nav-item">
             <button class="nav-link" type="button" aria-expanded="false">
               Solutions
-              <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
             </button>
             <div class="dropdown-menu">
               <a href="#industries" class="dropdown-link industry-nav-trigger" data-ind="grocery">
+                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 11 4-7"/><path d="m19 11-4-7"/><path d="M2 11h20"/><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.6-7.4"/><path d="m9 11 1 9"/><path d="m15 11-1 9"/></svg>
                 <div>
                   <div class="dropdown-title">Grocery & Supermarkets</div>
                   <div class="dropdown-desc">Weigh-scale sync, loose item barcodes & expiry</div>
                 </div>
               </a>
               <a href="#industries" class="dropdown-link industry-nav-trigger" data-ind="fashion">
+                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
                 <div>
                   <div class="dropdown-title">Fashion & Boutiques</div>
                   <div class="dropdown-desc">Size/color matrix, seasonal discounts & tag printing</div>
                 </div>
               </a>
               <a href="#industries" class="dropdown-link industry-nav-trigger" data-ind="electronics">
+                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="12" x2="12.01" y1="18" y2="18"/></svg>
                 <div>
                   <div class="dropdown-title">Electronics & Mobile</div>
                   <div class="dropdown-desc">Serial & IMEI tracking, warranties & bundles</div>
                 </div>
               </a>
               <a href="#industries" class="dropdown-link industry-nav-trigger" data-ind="pharmacy">
+                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>
                 <div>
                   <div class="dropdown-title">Pharmacy & Healthcare</div>
                   <div class="dropdown-desc">Batch numbers, drug expiry alerts & prescriptions</div>
                 </div>
               </a>
               <a href="#industries" class="dropdown-link industry-nav-trigger" data-ind="hardware">
+                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m14.7 12.7 5.3 5.3a1 1 0 0 1-1.4 1.4l-5.3-5.3"/><path d="m14.7 12.7 1.4-1.4a4 4 0 0 0 0-5.7l-.3-.3a4 4 0 0 0-5.7 0l-.7.7 3.5 3.5-2.1 2.1-3.5-3.5-.7.7a4 4 0 0 0 0 5.7l.3.3a4 4 0 0 0 5.7 0l1.4-1.4Z"/></svg>
                 <div>
                   <div class="dropdown-title">Hardware & Paints</div>
                   <div class="dropdown-desc">Unit conversions, contractor credit & bulk pricing</div>
                 </div>
               </a>
               <a href="#industries" class="dropdown-link industry-nav-trigger" data-ind="wholesale">
+                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z"/><path d="M6 18h12"/><path d="M6 14h12"/></svg>
                 <div>
                   <div class="dropdown-title">Wholesale & B2B</div>
                   <div class="dropdown-desc">Carton pricing, credit limits & GST E-Way bills</div>
@@ -157,22 +196,25 @@
           <li class="nav-item">
             <button class="nav-link" type="button" aria-expanded="false">
               Resources
-              <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
             </button>
             <div class="dropdown-menu">
               <a href="#support" class="dropdown-link">
+                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="4.93" x2="9.17" y1="4.93" y2="9.17"/><line x1="14.83" x2="19.07" y1="14.83" y2="19.07"/><line x1="14.83" x2="19.07" y1="9.17" y2="4.93"/><line x1="4.93" x2="9.17" y1="19.07" y2="14.83"/></svg>
                 <div>
                   <div class="dropdown-title">Support Desk</div>
                   <div class="dropdown-desc">Submit ticket or track issue resolution</div>
                 </div>
               </a>
               <a href="#capabilities" class="dropdown-link">
+                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
                 <div>
                   <div class="dropdown-title">Platform Architecture</div>
                   <div class="dropdown-desc">Offline resilience & hardware compatibility</div>
                 </div>
               </a>
               <a href="#faq" class="dropdown-link">
+                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
                 <div>
                   <div class="dropdown-title">Frequently Asked Questions</div>
                   <div class="dropdown-desc">Setup, data migration & hardware answers</div>
@@ -185,16 +227,18 @@
           <li class="nav-item">
             <button class="nav-link" type="button" aria-expanded="false">
               Company
-              <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
             </button>
             <div class="dropdown-menu">
               <a href="#about" class="dropdown-link">
+                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
                 <div>
                   <div class="dropdown-title">About AFTERSHOP</div>
                   <div class="dropdown-desc">Our mission by Trawbit Technologies</div>
                 </div>
               </a>
               <a href="#contact" class="dropdown-link">
+                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 <div>
                   <div class="dropdown-title">Contact Sales</div>
                   <div class="dropdown-desc">Direct phone, email & branch support</div>
@@ -278,7 +322,7 @@
         <div class="hero-actions hero-actions-anim">
           <button class="btn btn-primary btn-lg open-checkout-btn" data-plan="Growth" type="button">
             Start Free Trial
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </button>
           <button class="btn btn-secondary btn-lg open-demo-btn" type="button">
             Book a Demo
@@ -313,6 +357,7 @@
           <div class="dashboard-status-right">
             <div class="sync-status">
               <span class="sync-pulse"></span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/><path d="m9 13 2 2 4-4"/></svg>
               <span class="sync-text">Live Cloud Sync</span>
             </div>
             <span id="heroClock" style="font-family:var(--font-mono);font-size:12px;font-weight:600;">14:32:08</span>
@@ -329,10 +374,12 @@
           </div>
           <div class="sim-buttons-group">
             <button type="button" id="heroSimulateSaleBtn" class="btn-sim-action">
-              ⚡ Ring Sale (+₹850)
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Ring Sale (+₹850)
             </button>
             <button type="button" id="heroSimulateScanBtn" class="btn-sim-action">
-              📷 Scan Barcode
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 8v8"/><path d="M12 8v8"/><path d="M17 8v8"/></svg>
+              Scan Barcode
             </button>
           </div>
         </div>
@@ -342,7 +389,7 @@
           <div class="kpi-card card-sheen">
             <div class="kpi-label">
               <span>Today's Sales</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
             </div>
             <div class="kpi-val" id="heroTodaySales" data-counter="42850" data-prefix="₹">₹42,850</div>
             <div class="kpi-delta up">↑ +18.4% vs yesterday</div>
@@ -351,7 +398,7 @@
           <div class="kpi-card card-sheen">
             <div class="kpi-label">
               <span>Orders</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
             </div>
             <div class="kpi-val" id="heroCompletedOrders" data-counter="124">124</div>
             <div class="kpi-delta neutral">Avg Ticket: ₹345.50</div>
@@ -360,7 +407,7 @@
           <div class="kpi-card card-sheen">
             <div class="kpi-label">
               <span>Low Stock</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
             </div>
             <div class="kpi-val" id="heroLowStock" data-counter="18" style="color:var(--warning);">18</div>
             <div class="kpi-delta warning">3 items below buffer</div>
@@ -369,7 +416,7 @@
           <div class="kpi-card card-sheen">
             <div class="kpi-label">
               <span>Customers</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </div>
             <div class="kpi-val" id="heroCustomers" data-counter="1284">1,284</div>
             <div class="kpi-delta up">+28 new this week</div>
@@ -899,7 +946,7 @@
         <!-- 1. POS Billing -->
         <div class="feature-box reveal-up card-sheen delay-1">
           <div class="feature-icon-wrap">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1-2-1Z"/><path d="M8 7h8"/><path d="M8 11h8"/><path d="M8 15h5"/></svg>
           </div>
           <h3>POS Billing</h3>
           <p>Fast and reliable checkout.</p>
@@ -908,7 +955,7 @@
         <!-- 2. Inventory -->
         <div class="feature-box reveal-up card-sheen delay-2">
           <div class="feature-icon-wrap">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
           </div>
           <h3>Inventory</h3>
           <p>Track products and stock effortlessly.</p>
@@ -917,7 +964,7 @@
         <!-- 3. Barcode -->
         <div class="feature-box reveal-up card-sheen delay-3">
           <div class="feature-icon-wrap">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="4" x2="3" y2="20"/><line x1="6" y1="4" x2="6" y2="20"/><line x1="10" y1="4" x2="10" y2="20"/><line x1="13" y1="4" x2="13" y2="20"/><line x1="17" y1="4" x2="17" y2="20"/><line x1="21" y1="4" x2="21" y2="20"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 8v8"/><path d="M12 8v8"/><path d="M17 8v8"/></svg>
           </div>
           <h3>Barcode</h3>
           <p>Scan, search and sell faster.</p>
@@ -926,7 +973,7 @@
         <!-- 4. Customers -->
         <div class="feature-box reveal-up card-sheen delay-1">
           <div class="feature-icon-wrap">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
           <h3>Customers</h3>
           <p>Keep customer information organized.</p>
@@ -935,7 +982,7 @@
         <!-- 5. Purchasing -->
         <div class="feature-box reveal-up card-sheen delay-2">
           <div class="feature-icon-wrap">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17h4V5H2v12h3"/><path d="M20 17h2v-3.34a4 4 0 0 0-1.17-2.83L19 9h-5v8h2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
           </div>
           <h3>Purchasing</h3>
           <p>Manage suppliers and purchases.</p>
@@ -944,7 +991,7 @@
         <!-- 6. Expenses -->
         <div class="feature-box reveal-up card-sheen delay-3">
           <div class="feature-icon-wrap">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>
           </div>
           <h3>Expenses</h3>
           <p>Track business expenses.</p>
@@ -953,7 +1000,7 @@
         <!-- 7. Staff -->
         <div class="feature-box reveal-up card-sheen delay-1">
           <div class="feature-icon-wrap">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
           </div>
           <h3>Staff</h3>
           <p>Control roles and permissions.</p>
@@ -962,7 +1009,7 @@
         <!-- 8. Reports -->
         <div class="feature-box reveal-up card-sheen delay-2">
           <div class="feature-icon-wrap">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/><path d="M15 9h4v4"/></svg>
           </div>
           <h3>Reports</h3>
           <p>Understand sales and business performance.</p>
@@ -971,7 +1018,7 @@
         <!-- 9. GST Billing -->
         <div class="feature-box reveal-up card-sheen delay-3">
           <div class="feature-icon-wrap">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></svg>
           </div>
           <h3>GST Billing</h3>
           <p>Create professional GST-ready invoices.</p>
