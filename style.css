@@ -182,14 +182,14 @@ body.preloader-active {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 520px;
+  max-width: 960px;
   padding: 0 16px;
 }
 
 .preloader-lottie-frame {
   position: relative;
-  width: 440px;
-  max-width: 90vw;
+  width: min(780px, 94vw);
+  max-width: 100%;
   aspect-ratio: 480 / 270;
   display: flex;
   align-items: center;
@@ -219,8 +219,8 @@ body.preloader-active {
 }
 
 .preloader-fallback-icon {
-  width: 80px;
-  height: 80px;
+  width: 96px;
+  height: 96px;
   animation: preloaderFloat 2.4s ease-in-out infinite alternate;
 }
 
@@ -233,9 +233,15 @@ body.preloader-active {
   }
 }
 
+@media (max-width: 768px) {
+  .preloader-lottie-frame {
+    width: min(560px, 94vw);
+  }
+}
+
 @media (max-width: 480px) {
   .preloader-lottie-frame {
-    width: 320px;
+    width: 96vw;
   }
 }
 

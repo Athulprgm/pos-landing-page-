@@ -17,42 +17,29 @@
     const lottieContainer = document.getElementById('preloaderLottie');
     let animInstance = null;
     let isDismissed = false;
-    const startTime = performance.now();
-    const MIN_DISPLAY_TIME = 1800; // Allow the full receipt printing animation to play
-    const MAX_SAFETY_TIMEOUT = 3600; // Hard safety fallback limit
+    let isAnimComplete = false;
+    let isPageLoaded = (document.readyState === 'complete');
+    const FULL_ANIM_DURATION = 2400; // Exact duration of 140 frames @ 60fps (~2.34s)
+    const MAX_SAFETY_TIMEOUT = 4200; // Hard safety fallback limit
 
     // Render fallback brand logo if Lottie or JSON fails to load
     function renderFallback() {
       if (!lottieContainer || lottieContainer.querySelector('.preloader-fallback')) return;
       lottieContainer.innerHTML = `
         <div class="preloader-fallback">
-          <img src="assets/logo.svg" alt="aftershop" class="preloader-fallback-icon" width="80" height="80">
+          <img src="assets/logo.svg" alt="aftershop" class="preloader-fallback-icon" width="96" height="96">
         </div>
       `;
     }
 
-    // Initialize Lottie Animation
-    if (window.lottie && lottieContainer) {
-      try {
-        animInstance = window.lottie.loadAnimation({
-          container: lottieContainer,
-          renderer: 'canvas', // Canvas renderer provides hardware-accelerated 60fps playback
-          loop: true,
-          autoplay: true,
-          path: 'assets/hupng-mp4-to-lottie-1790178348850.json'
-        });
-
-        animInstance.addEventListener('data_failed', renderFallback);
-        animInstance.addEventListener('error', renderFallback);
-      } catch (err) {
-        console.warn('[Preloader] Lottie load error, displaying fallback:', err);
-        renderFallback();
+    // Attempt to dismiss only after the animation has played in full AND the page is ready
+    function checkDismiss() {
+      if (isAnimComplete && isPageLoaded) {
+        setTimeout(dismissPreloader, 180);
       }
-    } else {
-      renderFallback();
     }
 
-    // Dismissal sequence
+    // Dismissal sequence with smooth fade-out
     function dismissPreloader() {
       if (isDismissed) return;
       isDismissed = true;
@@ -70,20 +57,63 @@
       }, 700);
     }
 
-    // Trigger completion once window is fully loaded + minimum time respected
-    function onPageReady() {
-      const elapsed = performance.now() - startTime;
-      const remainingTime = Math.max(0, MIN_DISPLAY_TIME - elapsed);
-      setTimeout(dismissPreloader, remainingTime);
-    }
+    // Initialize Lottie Animation
+    if (window.lottie && lottieContainer) {
+      try {
+        animInstance = window.lottie.loadAnimation({
+          container: lottieContainer,
+          renderer: 'canvas', // Canvas renderer provides smooth 60fps playback
+          loop: false, // Play full video animation from start to finish once
+          autoplay: true,
+          path: 'assets/hupng-mp4-to-lottie-1790178348850.json'
+        });
 
-    if (document.readyState === 'complete') {
-      onPageReady();
+        // Trigger when the video animation finishes its entire sequence
+        animInstance.addEventListener('complete', () => {
+          isAnimComplete = true;
+          checkDismiss();
+        });
+
+        animInstance.addEventListener('data_failed', () => {
+          renderFallback();
+          isAnimComplete = true;
+          checkDismiss();
+        });
+
+        animInstance.addEventListener('error', () => {
+          renderFallback();
+          isAnimComplete = true;
+          checkDismiss();
+        });
+      } catch (err) {
+        console.warn('[Preloader] Lottie load error, displaying fallback:', err);
+        renderFallback();
+        isAnimComplete = true;
+        checkDismiss();
+      }
     } else {
-      window.addEventListener('load', onPageReady, { once: true });
+      renderFallback();
+      isAnimComplete = true;
+      checkDismiss();
     }
 
-    // Hard safety timeout
+    // Fallback timer: ensure isAnimComplete is flagged after full 2.4s duration
+    setTimeout(() => {
+      if (!isAnimComplete) {
+        isAnimComplete = true;
+        checkDismiss();
+      }
+    }, FULL_ANIM_DURATION);
+
+    // Track window load completion
+    if (!isPageLoaded) {
+      window.addEventListener('load', () => {
+        isPageLoaded = true;
+        checkDismiss();
+      }, { once: true });
+    }
+
+    // Hard safety timeout: Ensure user never gets stuck under any circumstance
     setTimeout(dismissPreloader, MAX_SAFETY_TIMEOUT);
   })();
 
