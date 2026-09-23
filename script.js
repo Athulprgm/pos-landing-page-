@@ -27,7 +27,7 @@
       if (!lottieContainer || lottieContainer.querySelector('.preloader-fallback')) return;
       lottieContainer.innerHTML = `
         <div class="preloader-fallback">
-          <img src="assets/logo.svg" alt="aftershop" class="preloader-fallback-icon" width="96" height="96">
+          <img src="assets/logo.svg" alt="aftershop" class="preloader-fallback-icon" width="72" height="72">
         </div>
       `;
     }
