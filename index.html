@@ -37,8 +37,25 @@
         </div>
       </a>
 
-      <!-- Center Navigation Menu -->
+      <!-- Center Navigation Menu / Slide-in Sidebar Drawer -->
       <nav class="nav-menu" id="navMenu" aria-label="Primary Navigation">
+        <!-- Mobile Drawer Header -->
+        <div class="drawer-header">
+          <div class="drawer-brand">
+            <img src="assets/logo.svg" alt="AFTERSHOP Logo" width="28" height="28">
+            <div class="drawer-brand-text-group">
+              <span class="drawer-brand-title">AFTERSHOP</span>
+              <span class="drawer-brand-sub">by Trawbit</span>
+            </div>
+          </div>
+          <button class="drawer-close-btn" id="drawerCloseBtn" type="button" aria-label="Close Navigation Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+
         <ul class="nav-links" id="navLinks">
           <!-- Product Dropdown -->
           <li class="nav-item">
@@ -186,7 +203,24 @@
             </div>
           </li>
         </ul>
+
+        <!-- Mobile Drawer Footer Action CTAs -->
+        <div class="drawer-footer">
+          <div class="drawer-actions">
+            <button class="btn btn-ghost drawer-btn" id="drawerSignInBtn" type="button">Sign In</button>
+            <button class="btn btn-secondary drawer-btn open-demo-btn" type="button">Book a Demo</button>
+            <button class="btn btn-primary drawer-btn open-checkout-btn" data-plan="Growth" type="button">Start Free Trial</button>
+          </div>
+          <div class="drawer-meta">
+            <span>Beyond Every Sale</span>
+            <span class="drawer-meta-dot"></span>
+            <span>by Trawbit</span>
+          </div>
+        </div>
       </nav>
+
+      <!-- Sidebar Backdrop Overlay -->
+      <div class="sidebar-backdrop" id="sidebarBackdrop" aria-hidden="true"></div>
 
       <!-- Right Action CTAs -->
       <div class="header-actions">
@@ -206,11 +240,13 @@
             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
           </svg>
         </button>
-        <button class="btn btn-ghost btn-sm" id="navSignInBtn" type="button">Sign In</button>
-        <button class="btn btn-secondary btn-sm open-demo-btn" type="button">Book a Demo</button>
-        <button class="btn btn-primary btn-sm open-checkout-btn" data-plan="Growth" type="button">Start Free</button>
-        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Navigation Menu" aria-expanded="false" type="button">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <button class="btn btn-ghost btn-sm nav-desktop-btn" id="navSignInBtn" type="button">Sign In</button>
+        <button class="btn btn-secondary btn-sm nav-desktop-btn open-demo-btn" type="button">Book a Demo</button>
+        <button class="btn btn-primary btn-sm nav-desktop-cta open-checkout-btn" data-plan="Growth" type="button">Start Free</button>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="navMenu" type="button">
+          <span class="hamburger-line top-line"></span>
+          <span class="hamburger-line mid-line"></span>
+          <span class="hamburger-line bot-line"></span>
         </button>
       </div>
     </div>
@@ -271,13 +307,13 @@
 
           <div class="dashboard-badge-center">
             <span class="demo-pill">DEMO STORE</span>
-            <span>Sample Data · Downtown Flagship #01</span>
+            <span class="badge-store-name">Sample Data · Downtown Flagship #01</span>
           </div>
 
           <div class="dashboard-status-right">
             <div class="sync-status">
               <span class="sync-pulse"></span>
-              Live Cloud Sync
+              <span class="sync-text">Live Cloud Sync</span>
             </div>
             <span id="heroClock" style="font-family:var(--font-mono);font-size:12px;font-weight:600;">14:32:08</span>
           </div>
@@ -286,14 +322,14 @@
         <!-- Interactive Terminal Simulator Bar -->
         <div class="dashboard-actions-bar">
           <div class="dashboard-store-meta">
-            <span class="terminal-active-tag">REGISTER #01 // ACTIVE</span>
-            <span>Cashier: Priya K.</span>
-            <span>•</span>
-            <span style="color:var(--success);font-weight:600;">GST Registered</span>
+            <span class="terminal-active-tag">REGISTER #01</span>
+            <span class="meta-cashier">Cashier: Priya K.</span>
+            <span class="meta-dot">•</span>
+            <span class="meta-gst" style="color:var(--success);font-weight:600;">GST Registered</span>
           </div>
           <div class="sim-buttons-group">
             <button type="button" id="heroSimulateSaleBtn" class="btn-sim-action">
-              ⚡ Ring Test Sale (+₹850)
+              ⚡ Ring Sale (+₹850)
             </button>
             <button type="button" id="heroSimulateScanBtn" class="btn-sim-action">
               📷 Scan Barcode
