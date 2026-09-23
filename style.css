@@ -215,17 +215,44 @@ body.preloader-active {
 
 .preloader-brand-title {
   font-family: var(--font-sans);
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 800;
-  letter-spacing: -0.035em;
-  color: var(--primary);
+  letter-spacing: -0.04em;
+  line-height: 1;
   text-transform: lowercase;
-  margin-top: 2px;
-  opacity: 0;
-  transform: translateY(6px);
-  animation: preloaderBrandFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+  margin-top: 6px;
   user-select: none;
   -webkit-user-select: none;
+  background: linear-gradient(
+    135deg,
+    #FFFFFF 0%,
+    #FFFFFF 42%,
+    #10D69C 68%,
+    #FFFFFF 88%,
+    rgba(255, 255, 255, 0.75) 100%
+  );
+  background-size: 240% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 14px rgba(255, 255, 255, 0.14));
+  opacity: 0;
+  transform: translateY(8px);
+  animation: preloaderBrandReveal 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+}
+
+[data-theme="light"] .preloader-brand-title {
+  background: linear-gradient(
+    135deg,
+    #0B0B0B 0%,
+    #0B0B0B 42%,
+    #0EBF8B 68%,
+    #0B0B0B 88%,
+    #444444 100%
+  );
+  background-size: 240% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.08));
 }
 
 .preloader-fallback {
@@ -240,16 +267,18 @@ body.preloader-active {
   animation: preloaderFloat 2.4s ease-in-out infinite alternate;
 }
 
-@keyframes preloaderBrandFade {
+@keyframes preloaderBrandReveal {
   0% {
     opacity: 0;
-    transform: translateY(6px);
-    letter-spacing: -0.06em;
+    transform: translateY(8px);
+    background-position: 100% center;
+    filter: blur(4px) drop-shadow(0 2px 14px rgba(255, 255, 255, 0.14));
   }
   100% {
     opacity: 1;
     transform: translateY(0);
-    letter-spacing: -0.035em;
+    background-position: 0% center;
+    filter: blur(0px) drop-shadow(0 2px 14px rgba(255, 255, 255, 0.14));
   }
 }
 
@@ -267,7 +296,8 @@ body.preloader-active {
     width: min(320px, 88vw);
   }
   .preloader-brand-title {
-    font-size: 21px;
+    font-size: 22px;
+    margin-top: 4px;
   }
 }
 
