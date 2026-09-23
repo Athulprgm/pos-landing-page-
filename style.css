@@ -179,6 +179,7 @@ body.preloader-active {
   position: relative;
   z-index: 2;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -212,6 +213,21 @@ body.preloader-active {
   display: block;
 }
 
+.preloader-brand-title {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--primary);
+  text-transform: lowercase;
+  margin-top: 2px;
+  opacity: 0;
+  transform: translateY(6px);
+  animation: preloaderBrandFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 .preloader-fallback {
   display: flex;
   align-items: center;
@@ -222,6 +238,19 @@ body.preloader-active {
   width: 72px;
   height: 72px;
   animation: preloaderFloat 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes preloaderBrandFade {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+    letter-spacing: -0.06em;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: -0.035em;
+  }
 }
 
 @keyframes preloaderFloat {
@@ -237,11 +266,17 @@ body.preloader-active {
   .preloader-lottie-frame {
     width: min(320px, 88vw);
   }
+  .preloader-brand-title {
+    font-size: 21px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .preloader-fallback-icon {
+  .preloader-fallback-icon,
+  .preloader-brand-title {
     animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
   .app-preloader {
     transition: opacity 0.3s ease !important;
