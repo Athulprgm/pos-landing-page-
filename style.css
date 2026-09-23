@@ -175,42 +175,6 @@ body.preloader-active {
   filter: blur(10px);
 }
 
-.preloader-backdrop {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.preloader-ambient-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 580px;
-  height: 580px;
-  max-width: 90vw;
-  max-height: 90vw;
-  background: radial-gradient(circle, rgba(16, 214, 156, 0.18) 0%, rgba(16, 214, 156, 0.05) 45%, transparent 70%);
-  border-radius: 50%;
-  filter: blur(48px);
-  animation: preloaderPulse 3.5s ease-in-out infinite alternate;
-}
-
-.preloader-grid-pattern {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-  background-size: 24px 24px;
-  mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 20%, transparent 80%);
-  -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 20%, transparent 80%);
-  opacity: 0.6;
-}
-
-[data-theme="light"] .preloader-grid-pattern {
-  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px);
-}
-
 .preloader-card {
   position: relative;
   z-index: 2;
@@ -230,17 +194,6 @@ body.preloader-active {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.preloader-lottie-frame::after {
-  content: '';
-  position: absolute;
-  inset: 15%;
-  background: radial-gradient(circle, rgba(16, 214, 156, 0.22) 0%, transparent 70%);
-  filter: blur(32px);
-  z-index: -1;
-  border-radius: 50%;
-  pointer-events: none;
 }
 
 .preloader-lottie {
@@ -271,17 +224,6 @@ body.preloader-active {
   animation: preloaderFloat 2.4s ease-in-out infinite alternate;
 }
 
-@keyframes preloaderPulse {
-  0% {
-    transform: translate(-50%, -50%) scale(0.92);
-    opacity: 0.65;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1.08);
-    opacity: 1;
-  }
-}
-
 @keyframes preloaderFloat {
   0% {
     transform: translateY(0);
@@ -298,7 +240,6 @@ body.preloader-active {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .preloader-ambient-glow,
   .preloader-fallback-icon {
     animation: none !important;
   }
