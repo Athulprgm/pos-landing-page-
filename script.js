@@ -8,6 +8,148 @@
   'use strict';
 
   /* =========================================================================
+     0. High-Performance App Preloader & Brand Lottie Controller
+     ========================================================================= */
+  (function initPreloader() {
+    const preloader = document.getElementById('appPreloader');
+    if (!preloader) return;
+
+    const lottieContainer = document.getElementById('preloaderLottie');
+    const progressBar = document.getElementById('preloaderProgressBar');
+    const percentText = document.getElementById('preloaderPercent');
+    const statusText = document.getElementById('preloaderStatusText');
+
+    let animInstance = null;
+    let isLoaded = false;
+    let currentProgress = 0;
+    let targetProgress = 20;
+    const startTime = performance.now();
+    const MIN_DISPLAY_TIME = 1600; // Minimum time (ms) to show the receipt animation smoothly
+    const MAX_SAFETY_TIMEOUT = 3800; // Hard fallback limit
+
+    // Render fallback brand logo if Lottie or JSON fails to load
+    function renderFallback() {
+      if (!lottieContainer || lottieContainer.querySelector('.preloader-fallback')) return;
+      lottieContainer.innerHTML = `
+        <div class="preloader-fallback">
+          <img src="assets/logo.svg" alt="aftershop" class="preloader-fallback-icon" width="72" height="72">
+        </div>
+      `;
+    }
+
+    // Initialize Lottie Animation
+    if (window.lottie && lottieContainer) {
+      try {
+        animInstance = window.lottie.loadAnimation({
+          container: lottieContainer,
+          renderer: 'canvas', // Canvas renderer provides smooth 60fps WebP sequence playback
+          loop: true,
+          autoplay: true,
+          path: 'assets/hupng-mp4-to-lottie-1790178348850.json'
+        });
+
+        animInstance.addEventListener('data_failed', renderFallback);
+        animInstance.addEventListener('error', renderFallback);
+      } catch (err) {
+        console.warn('[Preloader] Lottie load error, displaying fallback:', err);
+        renderFallback();
+      }
+    } else {
+      renderFallback();
+    }
+
+    // Status phrase helper
+    function getStatusPhrase(p) {
+      if (p < 30) return 'Initializing Retail Engine...';
+      if (p < 65) return 'Loading Point-of-Sale Modules...';
+      if (p < 95) return 'Synchronizing Catalogs & Hardware...';
+      return 'Ready.';
+    }
+
+    // Update UI progress indicators
+    function setProgress(val) {
+      const clamped = Math.min(100, Math.max(0, Math.round(val)));
+      if (progressBar) progressBar.style.width = clamped + '%';
+      if (percentText) percentText.textContent = clamped + '%';
+      if (statusText) statusText.textContent = getStatusPhrase(clamped);
+    }
+
+    // Progress animation loop
+    function updateProgress() {
+      if (currentProgress < targetProgress) {
+        const delta = (targetProgress - currentProgress) * 0.12;
+        currentProgress += Math.max(0.4, delta);
+        if (currentProgress > targetProgress) currentProgress = targetProgress;
+        setProgress(currentProgress);
+      }
+
+      if (currentProgress < 100) {
+        requestAnimationFrame(updateProgress);
+      } else {
+        // Complete preloader dismissal
+        setTimeout(dismissPreloader, 220);
+      }
+    }
+    requestAnimationFrame(updateProgress);
+
+    // Increment simulated progress while assets load
+    const progressInterval = setInterval(() => {
+      if (isLoaded) return;
+      if (targetProgress < 45) {
+        targetProgress += 12;
+      } else if (targetProgress < 75) {
+        targetProgress += 7;
+      } else if (targetProgress < 90) {
+        targetProgress += 2.5;
+      }
+    }, 180);
+
+    // Dismissal sequence
+    function dismissPreloader() {
+      clearInterval(progressInterval);
+      setProgress(100);
+
+      preloader.classList.add('fade-out');
+      document.body.classList.remove('preloader-active');
+
+      setTimeout(() => {
+        if (animInstance) {
+          try { animInstance.destroy(); } catch (e) {}
+        }
+        if (preloader.parentNode) {
+          preloader.parentNode.removeChild(preloader);
+        }
+      }, 700);
+    }
+
+    // Trigger completion once window is fully loaded + minimum time respected
+    function onPageReady() {
+      if (isLoaded) return;
+      isLoaded = true;
+
+      const elapsed = performance.now() - startTime;
+      const remainingTime = Math.max(0, MIN_DISPLAY_TIME - elapsed);
+
+      setTimeout(() => {
+        targetProgress = 100;
+      }, remainingTime);
+    }
+
+    if (document.readyState === 'complete') {
+      onPageReady();
+    } else {
+      window.addEventListener('load', onPageReady, { once: true });
+    }
+
+    // Hard safety timeout: Ensure user never gets stuck
+    setTimeout(() => {
+      if (!isLoaded) {
+        onPageReady();
+      }
+    }, MAX_SAFETY_TIMEOUT);
+  })();
+
+  /* =========================================================================
      1. Toast Notification System
      ========================================================================= */
   const toastContainer = document.getElementById('toastContainer');
