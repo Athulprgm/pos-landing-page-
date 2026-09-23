@@ -3,9 +3,17 @@
    Next.js / Apple Pro Aesthetic (Monochrome Dark Theme — No Blue)
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
+  /* Official AFTERSHOP Brand Colors */
+  --brand-black: #0B0B0B;
+  --brand-green: #10D69C;
+  --brand-green-hover: #0EBF8B;
+  --brand-green-subtle: rgba(16, 214, 156, 0.14);
+  --brand-green-border: rgba(16, 214, 156, 0.32);
+  --brand-gray: #F4F5F5;
+
   /* Next.js & Apple Pro Monochrome Palette */
   --primary: #FFFFFF;
   --secondary: #EDEDED;
@@ -29,16 +37,16 @@
   --muted-text: #666666;
   --text-white: #FFFFFF;
 
-  /* Status Colors (Apple/Vercel standard) */
-  --success: #10B981;
-  --success-subtle: rgba(16, 185, 129, 0.14);
+  /* Status Colors */
+  --success: #10D69C;
+  --success-subtle: rgba(16, 214, 156, 0.14);
   --warning: #F59E0B;
   --warning-subtle: rgba(245, 158, 11, 0.14);
   --danger: #EF4444;
   --danger-subtle: rgba(239, 68, 68, 0.14);
 
-  /* Typography Stack */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* Typography Stack: Official Brand Font Plus Jakarta Sans */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   /* Elevation & Shadows (Vercel-style precision shadows) */
@@ -381,17 +389,20 @@ button, input, select, textarea {
 }
 
 .brand-text {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
   color: var(--primary);
-  line-height: 1.1;
+  line-height: 1;
+  font-family: var(--font-sans);
 }
 
 .brand-tagline {
   font-size: 11px;
   color: var(--secondary-text);
   font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-top: 2px;
 }
 
 /* Navigation Menu */
@@ -3086,15 +3097,19 @@ input:checked + .switch-slider::before {
    Premium Icon System & Brand Mark Enhancements
    ========================================================================== */
 .brand-logo-svg {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  object-fit: contain;
   flex-shrink: 0;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, filter 0.35s ease;
 }
 
 .brand-wrap:hover .brand-logo-svg {
   transform: scale(1.06);
-  filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.3));
+  box-shadow: 0 4px 16px rgba(16, 214, 156, 0.28), 0 0 10px rgba(255, 255, 255, 0.18);
+  filter: drop-shadow(0 0 10px rgba(16, 214, 156, 0.3));
 }
 
 .timeline-step-icon {

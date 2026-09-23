@@ -982,9 +982,9 @@ KDS.dispatch({
      14. Console Branding
      ========================================================================= */
   console.log(
-    '%c AFTERSHOP %c Beyond Every Sale. by Trawbit Technologies %c',
-    'background:#171717;color:#FFFFFF;font-weight:bold;padding:4px 8px;border-radius:4px 0 0 4px;',
-    'background:#262626;color:#EDEDED;font-weight:bold;padding:4px 8px;border-radius:0 4px 4px 0;',
+    '%c aftershop %c Smarter Retail for Every Shop %c',
+    'background:#0B0B0B;color:#10D69C;font-weight:bold;padding:4px 8px;border-radius:4px 0 0 4px;',
+    'background:#10D69C;color:#0B0B0B;font-weight:bold;padding:4px 8px;border-radius:0 4px 4px 0;',
     'color:inherit;'
   );
 
