@@ -791,7 +791,137 @@ KDS.dispatch({
   }
 
   /* =========================================================================
-     10. Console Branding
+     10. Scroll Progress Bar
+     ========================================================================= */
+  const scrollProgressBar = document.getElementById('scrollProgress');
+  if (scrollProgressBar) {
+    const updateScrollProgress = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      scrollProgressBar.style.width = `${progress}%`;
+    };
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    updateScrollProgress();
+  }
+
+  /* =========================================================================
+     11. Scroll Reveal System (IntersectionObserver)
+     ========================================================================= */
+  const revealElements = document.querySelectorAll('.reveal-up, .reveal-scale, .reveal-fade');
+  if ('IntersectionObserver' in window && revealElements.length > 0) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  } else {
+    revealElements.forEach(el => el.classList.add('is-visible'));
+  }
+
+  /* =========================================================================
+     12. Animated Metric Counters
+     ========================================================================= */
+  const counterElements = document.querySelectorAll('[data-counter]');
+  if (counterElements.length > 0) {
+    const animateCounter = (el) => {
+      const target = parseFloat(el.getAttribute('data-counter')) || 0;
+      const isCurrency = el.getAttribute('data-format') === 'currency';
+      const duration = 1600;
+      let startTime = null;
+
+      const easeOutExpo = (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
+
+      const step = (timestamp) => {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        const easedProgress = easeOutExpo(progress);
+        const currentVal = Math.floor(easedProgress * target);
+
+        if (isCurrency) {
+          el.textContent = '₹' + currentVal.toLocaleString('en-IN');
+        } else {
+          el.textContent = currentVal.toLocaleString('en-IN');
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          if (isCurrency) {
+            el.textContent = '₹' + target.toLocaleString('en-IN');
+          } else {
+            el.textContent = target.toLocaleString('en-IN');
+          }
+        }
+      };
+
+      requestAnimationFrame(step);
+    };
+
+    if ('IntersectionObserver' in window) {
+      const counterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      counterElements.forEach(el => counterObserver.observe(el));
+    } else {
+      counterElements.forEach(el => animateCounter(el));
+    }
+  }
+
+  /* =========================================================================
+     13. Hero Dashboard Subtle 3D Tilt
+     ========================================================================= */
+  const heroDashboard = document.getElementById('heroDashboard');
+  const heroSection = document.querySelector('.hero-section');
+  if (heroDashboard && heroSection && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let ticking = false;
+
+    heroSection.addEventListener('mousemove', (e) => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const rect = heroDashboard.getBoundingClientRect();
+        if (e.clientY >= rect.top - 120 && e.clientY <= rect.bottom + 120) {
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+          const mouseX = e.clientX - centerX;
+          const mouseY = e.clientY - centerY;
+
+          const rotateX = (-mouseY / (rect.height / 2)) * 3;
+          const rotateY = (mouseX / (rect.width / 2)) * 3;
+
+          heroDashboard.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg)`;
+        }
+        ticking = false;
+      });
+    }, { passive: true });
+
+    heroSection.addEventListener('mouseleave', () => {
+      heroDashboard.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+      heroDashboard.style.transform = '';
+      setTimeout(() => {
+        heroDashboard.style.transition = '';
+      }, 600);
+    });
+  }
+
+  /* =========================================================================
+     14. Console Branding
      ========================================================================= */
   console.log(
     '%c AFTERSHOP %c Beyond Every Sale. by Trawbit Technologies %c',

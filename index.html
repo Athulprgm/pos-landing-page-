@@ -26,6 +26,7 @@
        Header / Sticky Navigation
        ========================================================================= -->
   <header class="site-header" id="siteHeader">
+    <div class="scroll-progress" id="scrollProgress"></div>
     <div class="container header-container">
       <!-- Brand Logo -->
       <a href="#hero" class="brand-wrap" aria-label="AFTERSHOP Home">
@@ -222,23 +223,23 @@
     <div class="container">
       <div class="hero-content">
         <!-- Eyebrow -->
-        <div class="section-eyebrow">
+        <div class="section-eyebrow hero-eyebrow-anim">
           AFTERSHOP · RETAIL MANAGEMENT PLATFORM
         </div>
 
         <!-- Main Heading -->
-        <h1 class="hero-title">
+        <h1 class="hero-title hero-title-anim">
           Everything your store needs.<br>
           One powerful system.
         </h1>
 
         <!-- Supporting Text -->
-        <p class="hero-subtitle">
+        <p class="hero-subtitle hero-subtitle-anim">
           Run billing, inventory, customers, payments and business operations from one modern retail management platform.
         </p>
 
         <!-- CTA Buttons -->
-        <div class="hero-actions">
+        <div class="hero-actions hero-actions-anim">
           <button class="btn btn-primary btn-lg open-checkout-btn" data-plan="Growth" type="button">
             Start Free Trial
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -249,7 +250,7 @@
         </div>
 
         <!-- Trust Line -->
-        <div class="hero-trust-line">
+        <div class="hero-trust-line hero-trust-anim">
           <span>No credit card required</span>
           <span class="hero-trust-dot"></span>
           <span>Simple setup</span>
@@ -259,7 +260,7 @@
       </div>
 
       <!-- Real Product Dashboard Frame -->
-      <div class="hero-dashboard-wrapper">
+      <div class="hero-dashboard-wrapper hero-dashboard-anim" id="heroDashboard">
         <!-- Top Window Header Bar -->
         <div class="dashboard-top-bar">
           <div class="window-dots">
@@ -302,39 +303,39 @@
 
         <!-- Top 4 KPI Metrics -->
         <div class="dashboard-kpi-grid">
-          <div class="kpi-card">
+          <div class="kpi-card card-sheen">
             <div class="kpi-label">
               <span>Today's Sales</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
             </div>
-            <div class="kpi-val" id="heroTodaySales">₹42,850</div>
+            <div class="kpi-val" id="heroTodaySales" data-counter="42850" data-prefix="₹">₹42,850</div>
             <div class="kpi-delta up">↑ +18.4% vs yesterday</div>
           </div>
 
-          <div class="kpi-card">
+          <div class="kpi-card card-sheen">
             <div class="kpi-label">
               <span>Orders</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
             </div>
-            <div class="kpi-val" id="heroCompletedOrders">124</div>
+            <div class="kpi-val" id="heroCompletedOrders" data-counter="124">124</div>
             <div class="kpi-delta neutral">Avg Ticket: ₹345.50</div>
           </div>
 
-          <div class="kpi-card">
+          <div class="kpi-card card-sheen">
             <div class="kpi-label">
               <span>Low Stock</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
             </div>
-            <div class="kpi-val" style="color:var(--warning);">18</div>
+            <div class="kpi-val" id="heroLowStock" data-counter="18" style="color:var(--warning);">18</div>
             <div class="kpi-delta warning">3 items below buffer</div>
           </div>
 
-          <div class="kpi-card">
+          <div class="kpi-card card-sheen">
             <div class="kpi-label">
               <span>Customers</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </div>
-            <div class="kpi-val">1,284</div>
+            <div class="kpi-val" id="heroCustomers" data-counter="1284">1,284</div>
             <div class="kpi-delta up">+28 new this week</div>
           </div>
         </div>
@@ -457,7 +458,7 @@
        ========================================================================= -->
   <section class="showcase-section" id="showcase">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal-up">
         <div class="section-eyebrow">PRODUCT SUITE</div>
         <h2>Everything connected.</h2>
         <p>AFTERSHOP brings the essential tools of your retail business together in one connected workspace.</p>
@@ -465,7 +466,7 @@
 
       <div class="showcase-flow">
         <!-- 01 — POS BILLING -->
-        <div class="showcase-item" id="showcase-pos">
+        <div class="showcase-item reveal-up" id="showcase-pos">
           <div class="showcase-text-col">
             <div class="showcase-step-label">01 — POS BILLING</div>
             <h3 class="showcase-heading">Checkout, without the complexity.</h3>
@@ -546,7 +547,7 @@
         </div>
 
         <!-- 02 — INVENTORY -->
-        <div class="showcase-item reversed" id="showcase-inventory">
+        <div class="showcase-item reversed reveal-up" id="showcase-inventory">
           <div class="showcase-text-col">
             <div class="showcase-step-label">02 — INVENTORY</div>
             <h3 class="showcase-heading">Know your stock at every moment.</h3>
@@ -629,7 +630,7 @@
         </div>
 
         <!-- 03 — CUSTOMERS -->
-        <div class="showcase-item" id="showcase-customers">
+        <div class="showcase-item reveal-up" id="showcase-customers">
           <div class="showcase-text-col">
             <div class="showcase-step-label">03 — CUSTOMERS</div>
             <h3 class="showcase-heading">Build better customer relationships.</h3>
@@ -647,66 +648,52 @@
               </li>
               <li class="feature-check-item">
                 <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                Contact information
+                Store credits & ledgers
               </li>
               <li class="feature-check-item">
                 <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                Loyalty-ready architecture
+                Loyalty points & tier discounts
               </li>
               <li class="feature-check-item">
                 <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                Outstanding payments
-              </li>
-              <li class="feature-check-item">
-                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                Repeat shopper tags
+                SMS / WhatsApp receipts
               </li>
             </ul>
           </div>
           <div class="showcase-visual-col">
             <div class="product-preview-card">
               <div class="preview-bar">
-                <span>CUSTOMER DIRECTORY · VERIFIED PROFILES</span>
-                <span class="status-tag active">1,284 Enrolled</span>
+                <span>CUSTOMER PROFILE // CUST-8201</span>
+                <span class="status-tag active">● VIP Platinum</span>
               </div>
               <div class="preview-body">
-                <table class="ui-table">
-                  <thead>
-                    <tr>
-                      <th>Customer</th>
-                      <th>Visits</th>
-                      <th>Total Spend</th>
-                      <th>Tier</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><strong>Dr. Meera Iyer</strong><br><span style="font-size:11px;color:var(--secondary-text);">meera.i@example.com</span></td>
-                      <td>28</td>
-                      <td style="font-weight:600;">₹64,200</td>
-                      <td><span class="status-tag active">VIP Tier</span></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Arjun Varma</strong><br><span style="font-size:11px;color:var(--secondary-text);">arjun.v@example.com</span></td>
-                      <td>19</td>
-                      <td style="font-weight:600;">₹42,850</td>
-                      <td><span class="status-tag active">Gold</span></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Sneha Roy</strong><br><span style="font-size:11px;color:var(--secondary-text);">sneha.r@example.com</span></td>
-                      <td>14</td>
-                      <td style="font-weight:600;">₹29,100</td>
-                      <td><span class="status-tag active">Gold</span></td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;">
+                  <div style="width:48px;height:48px;border-radius:50%;background:var(--surface-alt);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--primary);font-size:16px;">
+                    AK
+                  </div>
+                  <div>
+                    <div style="font-weight:700;font-size:15px;">Ananya Krishnan</div>
+                    <div style="font-size:12px;color:var(--secondary-text);">+91 98470 12345 · ananya.k@gmail.com</div>
+                  </div>
+                </div>
+
+                <div class="dashboard-kpi-grid" style="grid-template-columns:repeat(2,1fr);margin-bottom:0;">
+                  <div class="kpi-card" style="padding:12px;">
+                    <div class="kpi-label">Lifetime Spend</div>
+                    <div class="kpi-val" style="font-size:20px;">₹48,250</div>
+                  </div>
+                  <div class="kpi-card" style="padding:12px;">
+                    <div class="kpi-label">Loyalty Balance</div>
+                    <div class="kpi-val" style="font-size:20px;">1,240 pts</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <!-- 04 — REPORTS -->
-        <div class="showcase-item reversed" id="showcase-reports">
+        <div class="showcase-item reversed reveal-up" id="showcase-reports">
           <div class="showcase-text-col">
             <div class="showcase-step-label">04 — REPORTS</div>
             <h3 class="showcase-heading">Turn daily sales into clear decisions.</h3>
@@ -782,7 +769,7 @@
         </div>
 
         <!-- 05 — MULTI-STORE -->
-        <div class="showcase-item" id="showcase-multistore">
+        <div class="showcase-item reveal-up" id="showcase-multistore">
           <div class="showcase-text-col">
             <div class="showcase-step-label">05 — MULTI-STORE</div>
             <h3 class="showcase-heading">One business. Multiple locations.</h3>
@@ -866,7 +853,7 @@
        ========================================================================= -->
   <section class="features-section" id="features">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal-up">
         <div class="section-eyebrow">CAPABILITIES</div>
         <h2>Everything your retail business needs.</h2>
         <p>Built with enterprise precision to handle high transaction volumes and clean daily workflows.</p>
@@ -874,7 +861,7 @@
 
       <div class="feature-cards-grid">
         <!-- 1. POS Billing -->
-        <div class="feature-box">
+        <div class="feature-box reveal-up card-sheen delay-1">
           <div class="feature-icon-wrap">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
           </div>
@@ -883,7 +870,7 @@
         </div>
 
         <!-- 2. Inventory -->
-        <div class="feature-box">
+        <div class="feature-box reveal-up card-sheen delay-2">
           <div class="feature-icon-wrap">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
           </div>
@@ -892,7 +879,7 @@
         </div>
 
         <!-- 3. Barcode -->
-        <div class="feature-box">
+        <div class="feature-box reveal-up card-sheen delay-3">
           <div class="feature-icon-wrap">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="4" x2="3" y2="20"/><line x1="6" y1="4" x2="6" y2="20"/><line x1="10" y1="4" x2="10" y2="20"/><line x1="13" y1="4" x2="13" y2="20"/><line x1="17" y1="4" x2="17" y2="20"/><line x1="21" y1="4" x2="21" y2="20"/></svg>
           </div>
@@ -901,7 +888,7 @@
         </div>
 
         <!-- 4. Customers -->
-        <div class="feature-box">
+        <div class="feature-box reveal-up card-sheen delay-1">
           <div class="feature-icon-wrap">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
@@ -910,7 +897,7 @@
         </div>
 
         <!-- 5. Purchasing -->
-        <div class="feature-box">
+        <div class="feature-box reveal-up card-sheen delay-2">
           <div class="feature-icon-wrap">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
           </div>
@@ -919,7 +906,7 @@
         </div>
 
         <!-- 6. Expenses -->
-        <div class="feature-box">
+        <div class="feature-box reveal-up card-sheen delay-3">
           <div class="feature-icon-wrap">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
           </div>
@@ -928,7 +915,7 @@
         </div>
 
         <!-- 7. Staff -->
-        <div class="feature-box">
+        <div class="feature-box reveal-up card-sheen delay-1">
           <div class="feature-icon-wrap">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
           </div>
@@ -937,7 +924,7 @@
         </div>
 
         <!-- 8. Reports -->
-        <div class="feature-box">
+        <div class="feature-box reveal-up card-sheen delay-2">
           <div class="feature-icon-wrap">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
           </div>
@@ -946,7 +933,7 @@
         </div>
 
         <!-- 9. GST Billing -->
-        <div class="feature-box">
+        <div class="feature-box reveal-up card-sheen delay-3">
           <div class="feature-icon-wrap">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
           </div>
@@ -962,14 +949,14 @@
        ========================================================================= -->
   <section class="industries-section" id="industries">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal-up">
         <div class="section-eyebrow">SPECIALIZED VERTICALS</div>
         <h2>Built for the way you sell.</h2>
         <p>Choose your retail vertical to see how AFTERSHOP configures workflows for your store.</p>
       </div>
 
       <!-- Industry Nav Pills -->
-      <div class="industry-nav-pills" id="industryPills">
+      <div class="industry-nav-pills reveal-up delay-1" id="industryPills">
         <button class="industry-btn active" data-ind="grocery" type="button">Grocery</button>
         <button class="industry-btn" data-ind="fashion" type="button">Fashion</button>
         <button class="industry-btn" data-ind="electronics" type="button">Electronics</button>
@@ -983,7 +970,7 @@
       </div>
 
       <!-- Selected Industry Detail Panel -->
-      <div class="industry-content-card" id="industryPanel">
+      <div class="industry-content-card reveal-scale" id="industryPanel">
         <!-- Dynamically rendered via script.js -->
       </div>
     </div>
@@ -994,32 +981,32 @@
        ========================================================================= -->
   <section class="how-section" id="howItWorks">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal-up">
         <div class="section-eyebrow">FAST DEPLOYMENT</div>
         <h2>From setup to your first sale.</h2>
         <p>A simple, structured onboarding process designed to get your retail store running smoothly.</p>
       </div>
 
       <div class="timeline-grid">
-        <div class="timeline-step">
+        <div class="timeline-step reveal-up card-sheen delay-1">
           <span class="step-num-badge">STEP 01</span>
           <h3>Create your store</h3>
           <p>Register your business, define store outlets, and establish your tax profiles and currency settings.</p>
         </div>
 
-        <div class="timeline-step">
+        <div class="timeline-step reveal-up card-sheen delay-2">
           <span class="step-num-badge">STEP 02</span>
           <h3>Add products and inventory</h3>
           <p>Upload your catalog via Excel, scan barcodes, assign price tiers, and set up safety stock thresholds.</p>
         </div>
 
-        <div class="timeline-step">
+        <div class="timeline-step reveal-up card-sheen delay-3">
           <span class="step-num-badge">STEP 03</span>
           <h3>Set up staff and billing</h3>
           <p>Configure cashier PINs, assign role permissions, and link thermal receipt printers and cash drawers.</p>
         </div>
 
-        <div class="timeline-step">
+        <div class="timeline-step reveal-up card-sheen delay-4">
           <span class="step-num-badge">STEP 04</span>
           <h3>Start selling</h3>
           <p>Ring up customers at speed, accept UPI, card, and cash payments, and generate GST-ready invoices.</p>
@@ -1033,14 +1020,14 @@
        ========================================================================= -->
   <section class="pricing-section" id="pricing">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal-up">
         <div class="section-eyebrow">TRANSPARENT VALUE</div>
         <h2>Simple pricing. Built to scale with you.</h2>
         <p>Clear plans with zero hidden fees. Upgrade or cancel anytime.</p>
       </div>
 
       <!-- Monthly / Annual Toggle -->
-      <div class="pricing-toggle-wrap">
+      <div class="pricing-toggle-wrap reveal-up delay-1">
         <span class="toggle-label active" id="monthlyLabel">Monthly</span>
         <label class="pricing-switch" aria-label="Toggle Monthly or Annual Billing">
           <input type="checkbox" id="pricingToggle">
@@ -1055,7 +1042,7 @@
       <!-- Pricing Cards Grid -->
       <div class="pricing-grid">
         <!-- Starter Plan -->
-        <div class="pricing-card">
+        <div class="pricing-card reveal-up card-sheen delay-1">
           <h3 class="plan-name">Starter</h3>
           <p class="plan-desc">For small single-store shops seeking effortless modern billing.</p>
           <div class="plan-price-wrap">
@@ -1091,7 +1078,7 @@
         </div>
 
         <!-- Growth Plan (Featured) -->
-        <div class="pricing-card featured">
+        <div class="pricing-card featured reveal-up card-sheen delay-2">
           <span class="featured-pill">RECOMMENDED</span>
           <h3 class="plan-name">Growth</h3>
           <p class="plan-desc">For high-traffic retailers and expanding multi-location stores.</p>
@@ -1128,7 +1115,7 @@
         </div>
 
         <!-- Enterprise Plan -->
-        <div class="pricing-card">
+        <div class="pricing-card reveal-up card-sheen delay-3">
           <h3 class="plan-name">Enterprise</h3>
           <p class="plan-desc">For high-volume multi-branch chains and regional operations.</p>
           <div class="plan-price-wrap">
@@ -1171,32 +1158,32 @@
        ========================================================================= -->
   <section class="proof-section" id="capabilities">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal-up">
         <div class="section-eyebrow">RELIABILITY</div>
         <h2>Built for modern retail operations.</h2>
         <p>Engineered for high uptime, lightning fast registers, and seamless compliance across all stores.</p>
       </div>
 
       <div class="capabilities-grid">
-        <div class="cap-card">
+        <div class="cap-card reveal-up card-sheen delay-1">
           <div class="cap-val">&lt; 100ms</div>
           <div class="cap-title">Barcode Latency</div>
           <div class="cap-desc">Fast item additions and register throughput during peak sales rushes.</div>
         </div>
 
-        <div class="cap-card">
+        <div class="cap-card reveal-up card-sheen delay-2">
           <div class="cap-val">99.9%</div>
           <div class="cap-title">Cloud Availability</div>
           <div class="cap-desc">Redundant data centers ensure continuous point of sale operation.</div>
         </div>
 
-        <div class="cap-card">
+        <div class="cap-card reveal-up card-sheen delay-3">
           <div class="cap-val">100%</div>
           <div class="cap-title">GST Compliance</div>
           <div class="cap-desc">Automated CGST/SGST/IGST breakdown and compliant invoice generation.</div>
         </div>
 
-        <div class="cap-card">
+        <div class="cap-card reveal-up card-sheen delay-4">
           <div class="cap-val">Plug & Play</div>
           <div class="cap-title">Hardware Interop</div>
           <div class="cap-desc">Supports standard ESC/POS thermal printers, USB scanners and cash drawers.</div>
@@ -1210,7 +1197,7 @@
        ========================================================================= -->
   <section class="support-section" id="support">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal-up">
         <div class="section-eyebrow">CUSTOMER SUPPORT</div>
         <h2>Retail support desk.</h2>
         <p>Submit a support ticket or track existing requests in real time.</p>
@@ -1218,7 +1205,7 @@
 
       <div class="support-desk-grid">
         <!-- Submit Ticket Form -->
-        <div class="support-panel">
+        <div class="support-panel reveal-up delay-1">
           <h3>Submit a Support Ticket</h3>
           <p>Describe your issue and our retail operations support desk will respond promptly.</p>
 
@@ -1274,7 +1261,7 @@
         </div>
 
         <!-- Track Ticket Form -->
-        <div class="support-panel">
+        <div class="support-panel reveal-up delay-2">
           <h3>Track Ticket Status</h3>
           <p>Enter your reference number (e.g., #AS-10482) to view resolution status.</p>
 
@@ -1303,7 +1290,7 @@
        ========================================================================= -->
   <section class="contact-section" id="contact">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal-up">
         <div class="section-eyebrow">TALK TO SALES</div>
         <h2>Let's build a better retail operation.</h2>
         <p>Our solutions team is ready to evaluate AFTERSHOP for your stores.</p>
@@ -1311,7 +1298,7 @@
 
       <div class="contact-layout">
         <!-- Contact Tiles Column -->
-        <div class="contact-info-panel">
+        <div class="contact-info-panel reveal-up delay-1">
           <div class="contact-tile">
             <div class="contact-icon-box">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -1354,7 +1341,7 @@
         </div>
 
         <!-- Contact Form Card -->
-        <div class="contact-form-card">
+        <div class="contact-form-card reveal-up delay-2">
           <form id="contactEnquiryForm">
             <div class="form-row">
               <div class="form-group">
@@ -1398,7 +1385,7 @@
        ========================================================================= -->
   <section class="proof-section" id="about">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal-up">
         <div class="section-eyebrow">COMPANY MISSION</div>
         <h2>AFTERSHOP by Trawbit Technologies</h2>
         <p>
@@ -1413,7 +1400,7 @@
        ========================================================================= -->
   <section class="faq-section" id="faq">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal-up">
         <div class="section-eyebrow">FAQ</div>
         <h2>Frequently asked questions.</h2>
         <p>Common questions about getting started with AFTERSHOP.</p>
@@ -1421,7 +1408,7 @@
 
       <div class="faq-list" id="faqList">
         <!-- 1 -->
-        <div class="faq-item">
+        <div class="faq-item reveal-up delay-1">
           <button class="faq-question" type="button" aria-expanded="false">
             <span>What is AFTERSHOP?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
@@ -1434,7 +1421,7 @@
         </div>
 
         <!-- 2 -->
-        <div class="faq-item">
+        <div class="faq-item reveal-up delay-2">
           <button class="faq-question" type="button" aria-expanded="false">
             <span>Can I manage multiple stores?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
@@ -1447,7 +1434,7 @@
         </div>
 
         <!-- 3 -->
-        <div class="faq-item">
+        <div class="faq-item reveal-up delay-1">
           <button class="faq-question" type="button" aria-expanded="false">
             <span>Does AFTERSHOP support GST billing?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
@@ -1460,7 +1447,7 @@
         </div>
 
         <!-- 4 -->
-        <div class="faq-item">
+        <div class="faq-item reveal-up delay-2">
           <button class="faq-question" type="button" aria-expanded="false">
             <span>Can I manage inventory?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
@@ -1473,7 +1460,7 @@
         </div>
 
         <!-- 5 -->
-        <div class="faq-item">
+        <div class="faq-item reveal-up delay-1">
           <button class="faq-question" type="button" aria-expanded="false">
             <span>Does it support barcode scanners?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
@@ -1486,7 +1473,7 @@
         </div>
 
         <!-- 6 -->
-        <div class="faq-item">
+        <div class="faq-item reveal-up delay-2">
           <button class="faq-question" type="button" aria-expanded="false">
             <span>Can I manage employees?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
@@ -1499,7 +1486,7 @@
         </div>
 
         <!-- 7 -->
-        <div class="faq-item">
+        <div class="faq-item reveal-up delay-1">
           <button class="faq-question" type="button" aria-expanded="false">
             <span>Can I change my plan?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
@@ -1512,7 +1499,7 @@
         </div>
 
         <!-- 8 -->
-        <div class="faq-item">
+        <div class="faq-item reveal-up delay-2">
           <button class="faq-question" type="button" aria-expanded="false">
             <span>Do you offer a free trial?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
@@ -1532,7 +1519,7 @@
        ========================================================================= -->
   <section class="cta-section">
     <div class="container">
-      <div class="cta-banner">
+      <div class="cta-banner reveal-scale card-sheen">
         <h2 class="cta-title">Ready to move beyond the sale?</h2>
         <p class="cta-sub">
           Run your entire retail business from one modern, reliable platform. Start your 14-day free trial today.
