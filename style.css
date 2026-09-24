@@ -3096,6 +3096,25 @@ input:checked + .switch-slider::before {
     line-height: 1.5;
   }
 
+  .section-header {
+    margin-bottom: 36px;
+  }
+
+  .section-header h2 {
+    font-size: clamp(24px, 6.5vw, 30px);
+    margin-bottom: 12px;
+  }
+
+  .section-header p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .box-title-bar {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
   /* POS Dashboard Top Window Bar */
   .dashboard-top-bar {
     padding: 10px 12px;
