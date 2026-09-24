@@ -182,26 +182,61 @@
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('aftershop-theme', theme);
-    if (themeIconMoon && themeIconSun) {
-      if (theme === 'dark') {
-        themeIconMoon.style.display = 'block';
-        themeIconSun.style.display = 'none';
-      } else {
-        themeIconMoon.style.display = 'none';
-        themeIconSun.style.display = 'block';
-      }
-    }
   }
 
   // Initialize theme
   applyTheme(getPreferredTheme());
 
   if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
+    themeToggleBtn.addEventListener('click', (e) => {
       const current = document.documentElement.getAttribute('data-theme') || 'dark';
       const nextTheme = current === 'dark' ? 'light' : 'dark';
-      applyTheme(nextTheme);
-      showToast(`Switched to ${nextTheme === 'dark' ? 'Dark' : 'Light'} theme`, 'info', 2500);
+
+      // Trigger button spin micro-interaction
+      themeToggleBtn.classList.remove('btn-toggled');
+      void themeToggleBtn.offsetWidth; // Force reflow
+      themeToggleBtn.classList.add('btn-toggled');
+
+      // Check if browser supports modern View Transition API
+      if (document.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const rect = themeToggleBtn.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+        const endRadius = Math.hypot(
+          Math.max(x, window.innerWidth - x),
+          Math.max(y, window.innerHeight - y)
+        );
+
+        const transition = document.startViewTransition(() => {
+          applyTheme(nextTheme);
+        });
+
+        transition.ready.then(() => {
+          const clipPath = [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${endRadius}px at ${x}px ${y}px)`
+          ];
+          document.documentElement.animate(
+            {
+              clipPath: nextTheme === 'light' ? clipPath : [...clipPath].reverse()
+            },
+            {
+              duration: 500,
+              easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+              pseudoElement: nextTheme === 'light' ? '::view-transition-new(root)' : '::view-transition-old(root)'
+            }
+          );
+        });
+      } else {
+        // Fallback: smooth transition class
+        document.documentElement.classList.add('theme-transitioning');
+        applyTheme(nextTheme);
+        setTimeout(() => {
+          document.documentElement.classList.remove('theme-transitioning');
+        }, 450);
+      }
+
+      showToast(`Switched to ${nextTheme === 'dark' ? 'Dark' : 'Light'} theme`, 'info', 2200);
     });
   }
 

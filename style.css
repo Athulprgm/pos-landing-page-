@@ -72,39 +72,39 @@
 
 /* Light Theme Overrides (if toggled) */
 [data-theme="light"] {
-  --primary: #000000;
-  --secondary: #171717;
+  --primary: #09090B;
+  --secondary: #18181B;
   --background: #FFFFFF;
-  --surface: #FAFAFA;
-  --surface-alt: #F4F4F5;
-  --surface-hover: #ECECEE;
-  --border: #E4E4E7;
-  --border-subtle: #F4F4F5;
-  --border-strong: #D4D4D8;
+  --surface: #F8FAFC;
+  --surface-alt: #F1F5F9;
+  --surface-hover: #E2E8F0;
+  --border: #E2E8F0;
+  --border-subtle: #F1F5F9;
+  --border-strong: #CBD5E1;
 
-  --primary-accent: #000000;
-  --accent-hover: #262626;
-  --accent-subtle: rgba(0, 0, 0, 0.05);
-  --accent-border: rgba(0, 0, 0, 0.15);
+  --primary-accent: #09090B;
+  --accent-hover: #1E293B;
+  --accent-subtle: rgba(15, 23, 42, 0.05);
+  --accent-border: rgba(15, 23, 42, 0.12);
 
-  --main-text: #171717;
-  --secondary-text: #71717A;
-  --muted-text: #A1A1A1;
+  --main-text: #0F172A;
+  --secondary-text: #64748B;
+  --muted-text: #94A3B8;
   --text-white: #FFFFFF;
 
   --success: #059669;
-  --success-subtle: #D1FAE5;
+  --success-subtle: #ECFDF5;
   --warning: #D97706;
-  --warning-subtle: #FEF3C7;
+  --warning-subtle: #FFFBEB;
   --danger: #DC2626;
-  --danger-subtle: #FEE2E2;
+  --danger-subtle: #FEF2F2;
 
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 8px -2px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 12px 16px -4px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
-  --shadow-xl: 0 20px 24px -4px rgba(0, 0, 0, 0.08), 0 8px 8px -4px rgba(0, 0, 0, 0.03);
-  --shadow-dashboard: 0 24px 48px -12px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 14px -2px rgba(15, 23, 42, 0.07), 0 2px 6px -2px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 14px 28px -4px rgba(15, 23, 42, 0.08), 0 6px 12px -2px rgba(15, 23, 42, 0.04);
+  --shadow-xl: 0 24px 48px -6px rgba(15, 23, 42, 0.1), 0 10px 20px -4px rgba(15, 23, 42, 0.05);
+  --shadow-dashboard: 0 28px 60px -12px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(15, 23, 42, 0.08);
 }
 
 /* ==========================================================================
@@ -707,27 +707,116 @@ button, input, select, textarea {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  position: relative;
+  width: 38px;
+  height: 38px;
   border-radius: var(--radius-sm);
   background: var(--surface-alt);
   border: 1px solid var(--border);
   color: var(--main-text);
   cursor: pointer;
-  transition: var(--transition);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.25s ease,
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
   flex-shrink: 0;
+  overflow: hidden;
+  user-select: none;
 }
 
 .theme-toggle-btn:hover {
   background: var(--surface-hover);
   color: var(--primary);
   border-color: var(--border-strong);
-  transform: scale(1.04);
+  transform: scale(1.08);
+  box-shadow: 0 0 16px var(--accent-subtle);
 }
 
-.theme-toggle-btn svg {
-  width: 17px;
-  height: 17px;
+.theme-toggle-btn:active {
+  transform: scale(0.92);
+}
+
+.theme-icon-moon,
+.theme-icon-sun {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity 0.35s ease,
+              color 0.3s ease;
+}
+
+/* In Dark Theme (Default): Moon is prominent */
+[data-theme="dark"] .theme-icon-moon {
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
+  color: #EDEDED;
+}
+
+[data-theme="dark"] .theme-icon-sun {
+  transform: rotate(90deg) scale(0);
+  opacity: 0;
+  color: #F59E0B;
+}
+
+/* In Light Theme: Golden Radiant Sun is prominent */
+[data-theme="light"] .theme-icon-moon {
+  transform: rotate(-90deg) scale(0);
+  opacity: 0;
+}
+
+[data-theme="light"] .theme-icon-sun {
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
+  color: #D97706;
+}
+
+/* Button micro-interaction spring pulse on click */
+.theme-toggle-btn.btn-toggled {
+  animation: themeBtnSpring 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes themeBtnSpring {
+  0% { transform: scale(0.82) rotate(0deg); }
+  50% { transform: scale(1.22) rotate(180deg); box-shadow: 0 0 24px rgba(245, 158, 11, 0.4); }
+  100% { transform: scale(1) rotate(360deg); }
+}
+
+/* Modern View Transition API: Circular Expansion */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+[data-theme="dark"]::view-transition-old(root) {
+  z-index: 9999;
+}
+
+[data-theme="dark"]::view-transition-new(root) {
+  z-index: 1;
+}
+
+/* Smooth fallback transition across the entire DOM tree during theme switch */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              stroke 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              fill 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition-delay: 0s !important;
 }
 
 .mobile-menu-toggle {
@@ -3574,5 +3663,723 @@ input:checked + .switch-slider::before {
 
 [data-theme="light"] .dropdown-link:hover .dropdown-icon {
   color: #09090B;
+}
+
+/* ==========================================================================
+   Master Light Theme Design System (Apple / Stripe Pro Visual Standard)
+   ========================================================================== */
+
+/* Hero Section Enhancements in Light Mode */
+[data-theme="light"] .hero-section {
+  background: radial-gradient(ellipse 70% 45% at 50% -8%, rgba(16, 214, 156, 0.09), transparent 70%), #FFFFFF;
+}
+
+[data-theme="light"] .hero-title {
+  background: linear-gradient(180deg, #09090B 30%, #52525B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .hero-title span {
+  color: #059669 !important;
+  -webkit-text-fill-color: #059669 !important;
+}
+
+[data-theme="light"] .hero-subtitle {
+  color: #475569;
+}
+
+[data-theme="light"] .hero-trust-line {
+  color: #64748B;
+}
+
+[data-theme="light"] .hero-trust-dot {
+  background: #CBD5E1;
+}
+
+/* Interactive POS Dashboard in Light Mode */
+[data-theme="light"] .dashboard-window {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 24px 60px -12px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(15, 23, 42, 0.05);
+}
+
+[data-theme="light"] .dashboard-top-bar {
+  background: #F8FAFC;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+[data-theme="light"] .dashboard-badge-center {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  color: #0F172A;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="light"] .demo-pill {
+  background: #ECFDF5;
+  color: #059669;
+}
+
+[data-theme="light"] .dashboard-status-right {
+  color: #64748B;
+}
+
+[data-theme="light"] .dashboard-actions-bar {
+  background: #F8FAFC;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+[data-theme="light"] .terminal-active-tag {
+  background: #09090B;
+  color: #FFFFFF;
+}
+
+[data-theme="light"] .meta-cashier {
+  color: #64748B;
+}
+
+[data-theme="light"] .meta-dot {
+  color: #CBD5E1;
+}
+
+[data-theme="light"] .btn-sim-action {
+  background: #FFFFFF;
+  border-color: #E2E8F0;
+  color: #0F172A;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .btn-sim-action:hover {
+  background: #F1F5F9;
+  border-color: #CBD5E1;
+  color: #000000;
+  transform: translateY(-1px);
+}
+
+[data-theme="light"] .kpi-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="light"] .kpi-card:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+[data-theme="light"] .kpi-label {
+  color: #64748B;
+}
+
+[data-theme="light"] .kpi-val {
+  color: #09090B;
+}
+
+[data-theme="light"] .kpi-delta.up {
+  color: #059669;
+}
+
+[data-theme="light"] .kpi-delta.neutral {
+  color: #64748B;
+}
+
+[data-theme="light"] .kpi-delta.warning {
+  color: #D97706;
+}
+
+[data-theme="light"] .dashboard-inner-grid {
+  background: #E2E8F0;
+}
+
+[data-theme="light"] .dashboard-chart-box,
+[data-theme="light"] .dashboard-side-column {
+  background: #FFFFFF;
+}
+
+[data-theme="light"] .box-title {
+  color: #09090B;
+}
+
+[data-theme="light"] .box-subtitle-pill {
+  background: #F1F5F9;
+  color: #475569;
+  border: 1px solid #E2E8F0;
+}
+
+[data-theme="light"] .chart-axis-times {
+  color: #94A3B8;
+  border-top: 1px solid #F1F5F9;
+}
+
+/* Sales Telemetry SVG Line in Light Mode */
+[data-theme="light"] .sales-telemetry-svg {
+  color: #09090B;
+}
+
+[data-theme="light"] .chart-grid-line {
+  stroke: rgba(15, 23, 42, 0.07);
+}
+
+[data-theme="light"] .chart-stop-start {
+  stop-color: #09090B;
+  stop-opacity: 0.12;
+}
+
+[data-theme="light"] .chart-stop-end {
+  stop-color: #09090B;
+  stop-opacity: 0.0;
+}
+
+[data-theme="light"] .chart-line-stroke {
+  stroke: #09090B;
+}
+
+[data-theme="light"] .chart-peak-dot {
+  fill: #09090B;
+  stroke: #FFFFFF;
+}
+
+[data-theme="light"] .chart-end-dot {
+  fill: #09090B;
+  stroke: #FFFFFF;
+}
+
+[data-theme="light"] .dashboard-panel-section {
+  border-bottom: 1px solid #F1F5F9;
+}
+
+[data-theme="light"] .tx-row {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+}
+
+[data-theme="light"] .tx-row:hover {
+  background: #F1F5F9;
+  border-color: #CBD5E1;
+}
+
+[data-theme="light"] .tx-badge.upi {
+  background: #F1F5F9;
+  color: #0F172A;
+  border: 1px solid #E2E8F0;
+}
+
+[data-theme="light"] .tx-badge.card {
+  background: #ECFDF5;
+  color: #059669;
+  border: 1px solid #A7F3D0;
+}
+
+[data-theme="light"] .tx-badge.cash {
+  background: #FFFBEB;
+  color: #B45309;
+  border: 1px solid #FDE68A;
+}
+
+[data-theme="light"] .tx-meta-title {
+  color: #0F172A;
+}
+
+[data-theme="light"] .tx-meta-time {
+  color: #64748B;
+}
+
+[data-theme="light"] .tx-amount {
+  color: #09090B;
+}
+
+[data-theme="light"] .tx-status {
+  color: #059669;
+}
+
+[data-theme="light"] .alert-row {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+}
+
+[data-theme="light"] .alert-item-name {
+  color: #92400E;
+}
+
+[data-theme="light"] .alert-badge {
+  background: #FEF3C7;
+  color: #B45309;
+  border: 1px solid #FCD34D;
+}
+
+/* Showcase Section in Light Mode */
+[data-theme="light"] .showcase-section {
+  background: #F8FAFC;
+  border-top: 1px solid #E2E8F0;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+[data-theme="light"] .showcase-item {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+}
+
+[data-theme="light"] .showcase-step-label {
+  color: #059669;
+}
+
+[data-theme="light"] .showcase-heading {
+  color: #09090B;
+}
+
+[data-theme="light"] .showcase-desc {
+  color: #475569;
+}
+
+[data-theme="light"] .feature-check-item {
+  color: #0F172A;
+}
+
+[data-theme="light"] .check-icon {
+  color: #059669;
+}
+
+[data-theme="light"] .product-preview-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+}
+
+[data-theme="light"] .preview-bar {
+  background: #F8FAFC;
+  border-bottom: 1px solid #E2E8F0;
+  color: #475569;
+}
+
+[data-theme="light"] .preview-body {
+  background: #FFFFFF;
+}
+
+[data-theme="light"] .ui-table th {
+  color: #64748B;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+[data-theme="light"] .ui-table td {
+  color: #0F172A;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+[data-theme="light"] .status-tag.active {
+  background: #ECFDF5;
+  color: #047857;
+  border: 1px solid #A7F3D0;
+}
+
+[data-theme="light"] .status-tag.warning {
+  background: #FFFBEB;
+  color: #B45309;
+  border: 1px solid #FDE68A;
+}
+
+[data-theme="light"] .preview-body::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+[data-theme="light"] .preview-body::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+}
+
+/* Feature Cards in Light Mode */
+[data-theme="light"] .feature-box {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+[data-theme="light"] .feature-box:hover {
+  border-color: #94A3B8;
+  box-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="light"] .feature-title {
+  color: #09090B;
+}
+
+[data-theme="light"] .feature-desc {
+  color: #64748B;
+}
+
+/* Industry Solutions in Light Mode */
+[data-theme="light"] .industries-section {
+  background: #F8FAFC;
+  border-top: 1px solid #E2E8F0;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+[data-theme="light"] .industry-btn {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  color: #475569;
+}
+
+[data-theme="light"] .industry-btn:hover {
+  background: #F1F5F9;
+  color: #09090B;
+  border-color: #CBD5E1;
+}
+
+[data-theme="light"] .industry-btn.active {
+  background: #09090B;
+  color: #FFFFFF;
+  border-color: #09090B;
+  box-shadow: 0 4px 12px rgba(9, 9, 11, 0.18);
+}
+
+[data-theme="light"] .industry-content-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+}
+
+[data-theme="light"] .ind-info h3 {
+  color: #09090B;
+}
+
+[data-theme="light"] .ind-info p {
+  color: #475569;
+}
+
+[data-theme="light"] .ind-code-box {
+  background: #0F172A;
+  border-color: #1E293B;
+  color: #F8FAFC;
+}
+
+/* How It Works (Timeline) in Light Mode */
+[data-theme="light"] .timeline-step {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+[data-theme="light"] .timeline-step:hover {
+  border-color: #94A3B8;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="light"] .step-num-badge {
+  background: #ECFDF5;
+  color: #059669;
+}
+
+[data-theme="light"] .timeline-step h3 {
+  color: #09090B;
+}
+
+[data-theme="light"] .timeline-step p {
+  color: #64748B;
+}
+
+/* Pricing Cards in Light Mode */
+[data-theme="light"] .pricing-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+[data-theme="light"] .pricing-card:hover {
+  border-color: #94A3B8;
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="light"] .pricing-card.featured {
+  border: 2px solid #09090B;
+  box-shadow: 0 16px 36px rgba(9, 9, 11, 0.1), 0 0 0 1px #09090B;
+}
+
+[data-theme="light"] .featured-pill {
+  background: #09090B;
+  color: #FFFFFF;
+}
+
+[data-theme="light"] .plan-name {
+  color: #09090B;
+}
+
+[data-theme="light"] .plan-desc {
+  color: #64748B;
+}
+
+[data-theme="light"] .plan-currency,
+[data-theme="light"] .plan-amount {
+  color: #09090B;
+}
+
+[data-theme="light"] .plan-features-list li {
+  color: #0F172A;
+}
+
+[data-theme="light"] .plan-features-list svg {
+  color: #059669;
+}
+
+[data-theme="light"] .billing-toggle-wrapper {
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+}
+
+[data-theme="light"] .switch-slider {
+  background-color: #CBD5E1;
+}
+
+/* Capabilities (Proof) in Light Mode */
+[data-theme="light"] .cap-card {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+}
+
+[data-theme="light"] .cap-card:hover {
+  background: #FFFFFF;
+  border-color: #94A3B8;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+[data-theme="light"] .cap-val {
+  color: #09090B;
+}
+
+[data-theme="light"] .cap-title {
+  color: #0F172A;
+}
+
+[data-theme="light"] .cap-desc {
+  color: #64748B;
+}
+
+/* Support Desk & Contact in Light Mode */
+[data-theme="light"] .support-section {
+  background: #F8FAFC;
+  border-top: 1px solid #E2E8F0;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+[data-theme="light"] .support-panel,
+[data-theme="light"] .contact-form-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+}
+
+[data-theme="light"] .support-panel h3,
+[data-theme="light"] .contact-form-card h3 {
+  color: #09090B;
+}
+
+[data-theme="light"] .contact-tile {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+}
+
+[data-theme="light"] .contact-tile:hover {
+  background: #FFFFFF;
+  border-color: #CBD5E1;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+}
+
+[data-theme="light"] .contact-tile-val {
+  color: #09090B;
+}
+
+[data-theme="light"] .form-input,
+[data-theme="light"] .form-select,
+[data-theme="light"] .form-textarea {
+  background: #F8FAFC;
+  border-color: #CBD5E1;
+  color: #0F172A;
+}
+
+[data-theme="light"] .form-input:focus,
+[data-theme="light"] .form-select:focus,
+[data-theme="light"] .form-textarea:focus {
+  background: #FFFFFF;
+  border-color: #09090B;
+  box-shadow: 0 0 0 3px rgba(9, 9, 11, 0.12);
+}
+
+[data-theme="light"] .track-result-box {
+  background: #F8FAFC;
+  border-color: #CBD5E1;
+}
+
+/* FAQ Accordion in Light Mode */
+[data-theme="light"] .faq-item {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+}
+
+[data-theme="light"] .faq-item.active {
+  background: #F8FAFC;
+  border-color: #CBD5E1;
+}
+
+[data-theme="light"] .faq-question {
+  color: #09090B;
+}
+
+[data-theme="light"] .faq-chevron {
+  color: #64748B;
+}
+
+[data-theme="light"] .faq-answer-inner {
+  color: #475569;
+}
+
+/* CTA Banner in Light Mode */
+[data-theme="light"] .cta-banner {
+  background: #09090B;
+  border: 1px solid #27272A;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .cta-title {
+  background: linear-gradient(180deg, #FFFFFF 20%, #A1A1AA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .cta-sub {
+  color: #A1A1AA;
+}
+
+[data-theme="light"] .cta-btn-primary {
+  background: #FFFFFF;
+  color: #000000;
+  border-color: #FFFFFF;
+}
+
+[data-theme="light"] .cta-btn-primary:hover {
+  background: #E4E4E7;
+  border-color: #E4E4E7;
+  color: #000000;
+}
+
+[data-theme="light"] .cta-btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="light"] .cta-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Site Footer in Light Mode */
+[data-theme="light"] .site-footer {
+  background: #F8FAFC;
+  border-top: 1px solid #E2E8F0;
+}
+
+[data-theme="light"] .footer-heading {
+  color: #09090B;
+}
+
+[data-theme="light"] .footer-links a {
+  color: #64748B;
+}
+
+[data-theme="light"] .footer-links a:hover {
+  color: #09090B;
+}
+
+[data-theme="light"] .footer-bottom-bar {
+  border-top: 1px solid #E2E8F0;
+}
+
+[data-theme="light"] .footer-copyright {
+  color: #94A3B8;
+}
+
+[data-theme="light"] .footer-legal-links a {
+  color: #64748B;
+}
+
+[data-theme="light"] .footer-legal-links a:hover {
+  color: #09090B;
+}
+
+/* Modals in Light Mode */
+[data-theme="light"] .modal-dialog {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+}
+
+[data-theme="light"] .modal-header {
+  border-bottom: 1px solid #E2E8F0;
+}
+
+[data-theme="light"] .modal-title {
+  color: #09090B;
+}
+
+[data-theme="light"] .modal-subtitle {
+  color: #64748B;
+}
+
+[data-theme="light"] .modal-close-btn {
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  color: #475569;
+}
+
+[data-theme="light"] .modal-close-btn:hover {
+  background: #E2E8F0;
+  color: #0F172A;
+}
+
+/* Mobile Drawer in Light Mode */
+[data-theme="light"] .nav-menu {
+  background: #FFFFFF;
+  border-left: 1px solid #E2E8F0;
+  box-shadow: -16px 0 48px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .drawer-header,
+[data-theme="light"] .drawer-footer {
+  background: #F8FAFC;
+  border-color: #E2E8F0;
+}
+
+[data-theme="light"] .drawer-close-btn {
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  color: #0F172A;
+}
+
+[data-theme="light"] .dropdown-menu {
+  background: #F8FAFC;
+  border-color: #E2E8F0;
+}
+
+/* Floating Enquiry Button in Light Mode */
+[data-theme="light"] .floating-enquiry-btn {
+  background: #09090B;
+  color: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .floating-enquiry-btn:hover {
+  background: #27272A;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+}
+
+/* Card Sheen Effect in Light Mode */
+[data-theme="light"] .card-sheen::after {
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.03), transparent);
+}
+
+[data-theme="light"] .card-sheen:hover {
+  border-color: #CBD5E1 !important;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
 }
 
