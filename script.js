@@ -1087,19 +1087,27 @@ KDS.dispatch({
   }
 
   /* =========================================================================
-     13. Hero Dashboard Subtle 3D Tilt
+     13. Hero Dashboard Subtle 3D Tilt (60fps Optimized)
      ========================================================================= */
   const heroDashboard = document.getElementById('heroDashboard');
   const heroSection = document.querySelector('.hero-section');
   if (heroDashboard && heroSection && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     let ticking = false;
+    let rect = null;
+
+    const updateRect = () => {
+      rect = heroDashboard.getBoundingClientRect();
+    };
+
+    heroSection.addEventListener('mouseenter', updateRect, { passive: true });
+    window.addEventListener('resize', updateRect, { passive: true });
 
     heroSection.addEventListener('mousemove', (e) => {
+      if (!rect) updateRect();
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
-        const rect = heroDashboard.getBoundingClientRect();
-        if (e.clientY >= rect.top - 120 && e.clientY <= rect.bottom + 120) {
+        if (rect && e.clientY >= rect.top - 120 && e.clientY <= rect.bottom + 120) {
           const centerX = rect.left + rect.width / 2;
           const centerY = rect.top + rect.height / 2;
           const mouseX = e.clientX - centerX;
