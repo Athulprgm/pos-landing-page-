@@ -67,7 +67,12 @@
 
   --max-width: 1240px;
   --header-height: 72px;
-  --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.22s ease,
+                background-color 0.22s ease,
+                border-color 0.22s ease,
+                box-shadow 0.22s ease,
+                color 0.22s ease;
 }
 
 /* Light Theme Overrides (if toggled) */
@@ -805,17 +810,42 @@ button, input, select, textarea {
   z-index: 1;
 }
 
-/* Smooth fallback transition across the entire DOM tree during theme switch */
+/* Smooth fallback transition targeted to key surfaces during theme switch (60fps optimized) */
 html.theme-transitioning,
-html.theme-transitioning *,
-html.theme-transitioning *::before,
-html.theme-transitioning *::after {
-  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              stroke 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              fill 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+html.theme-transitioning body,
+html.theme-transitioning .site-header,
+html.theme-transitioning .hero-section,
+html.theme-transitioning .dashboard-window,
+html.theme-transitioning .kpi-card,
+html.theme-transitioning .showcase-section,
+html.theme-transitioning .showcase-item,
+html.theme-transitioning .product-preview-card,
+html.theme-transitioning .preview-bar,
+html.theme-transitioning .preview-body,
+html.theme-transitioning .ui-table,
+html.theme-transitioning .ui-table th,
+html.theme-transitioning .ui-table td,
+html.theme-transitioning .feature-box,
+html.theme-transitioning .industries-section,
+html.theme-transitioning .industry-btn,
+html.theme-transitioning .industry-content-card,
+html.theme-transitioning .timeline-step,
+html.theme-transitioning .pricing-card,
+html.theme-transitioning .proof-section,
+html.theme-transitioning .cap-card,
+html.theme-transitioning .support-section,
+html.theme-transitioning .contact-form-card,
+html.theme-transitioning .support-panel,
+html.theme-transitioning .contact-tile,
+html.theme-transitioning .faq-item,
+html.theme-transitioning .cta-banner,
+html.theme-transitioning .site-footer,
+html.theme-transitioning .modal-dialog,
+html.theme-transitioning .nav-menu {
+  transition: background-color 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.38s cubic-bezier(0.16, 1, 0.3, 1) !important;
   transition-delay: 0s !important;
 }
 
